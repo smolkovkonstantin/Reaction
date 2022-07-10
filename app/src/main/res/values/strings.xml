@@ -3,7 +3,7 @@
     <string name="buttonStart">buttonStart</string>
     <string name="buttonStop">buttonStop</string>
     <string name="button_name_start">start</string>
-    <string name="button_name_stop">STOP</string>
+    <string name="button_name_stop">WAIT!</string>
     <string name="text_name">Check your reaction</string>
     <string name="reset">reset</string>
 </resources>
