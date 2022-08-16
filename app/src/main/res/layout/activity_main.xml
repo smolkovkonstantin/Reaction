@@ -53,6 +53,7 @@
         android:stateListAnimator="@null"
         android:text="@string/button_name_stop"
         android:textSize="35sp"
+        android:backgroundTint="@color/black"
 
         app:cornerRadius="150dp"
 

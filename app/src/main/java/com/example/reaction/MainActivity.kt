@@ -6,8 +6,6 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.View
 import android.widget.Button
-import android.widget.Toast
-import androidx.core.text.isDigitsOnly
 import kotlin.random.Random
 
 class MainActivity : AppCompatActivity() {
@@ -16,50 +14,63 @@ class MainActivity : AppCompatActivity() {
     private var buttonStop: Button? = null // кпонка конца
     private var buttonReset: Button? = null // кпонка конца
 
-    // задержка перед стартом таймера
+    // delay before timer start
     private var randomNumber: Double = 1.0
 
-    // пользователь дотронулся до кнопки остановки
+    // user touch to button stop
     private var userTouchStop: Boolean = false
 
-    // флаг показывающий, что можно начать отсчёт
+    // flag that show can start counting
     private var timeStart: Boolean = false
 
-    // значение при котором таймер останавливается
-    private val breakTime = 600000.0
+    // value when timer stops
+    private val breakTime = 10000.0
 
+    // change red color
+    private val newRed = Color.RED + 70
 
+    // change yellow color
+    private val newYellow = Color.YELLOW * 40
+
+    // set green color to stop's button
     private fun toGreen() {
         buttonStop?.setBackgroundColor(Color.GREEN)
     }
 
+    // set yellow color to stop's button and name
+    @SuppressLint("SetTextI18n")
     private fun toYellow() {
-        buttonStop?.setBackgroundColor(Color.YELLOW)
+        buttonStop?.text = "WAIT!"
+        buttonStop?.setBackgroundColor(newYellow)
     }
 
+    // set yellow color to stop's button and name
+    @SuppressLint("SetTextI18n")
     private fun toRed() {
-        buttonStop?.setBackgroundColor(Color.RED)
+        buttonStop?.text = "Wow!"
+        buttonStop?.setBackgroundColor(newRed)
     }
 
+    // reset visible of buttons for begin
     private fun reset() {
         buttonStart?.visibility = View.VISIBLE
         buttonStop?.visibility = View.INVISIBLE
         buttonReset?.visibility = View.INVISIBLE
     }
 
-    // функция определяющая задержку перед стартом секундомера
+    // fun create delay time and start the timer
     private fun generateAndStart() {
         randomNumber = Random.nextDouble(1.0, 2.0) // генерация случайного числа
 
-        val thread = Thread {
+        Thread {
             while (randomNumber > 0) {
+                if (userTouchStop) break
                 Thread.sleep(1)
                 randomNumber -= 0.001
             }
             timeStart = true
             stopwatch()
-        }
-        thread.start()
+        }.start()
     }
 
     @SuppressLint("SetTextI18n")
@@ -67,17 +78,20 @@ class MainActivity : AppCompatActivity() {
         buttonStop?.text = "${time}ms"
     }
 
+    // fun start the stopwatch
+    @SuppressLint("SetTextI18n")
     private fun stopwatch() {
         var nowtime = 0.0
-        var currentTime: Int
 
         Thread {
             while (timeStart && nowtime < breakTime) {
                 if (userTouchStop) break
                 Thread.sleep(1)
                 nowtime += 2.0
-                currentTime = nowtime.toInt()
-                update(currentTime)
+                update(nowtime.toInt())
+            }
+            if (nowtime == breakTime) {
+                buttonStop?.text = "Hey?"
             }
         }.start()
     }
@@ -98,23 +112,27 @@ class MainActivity : AppCompatActivity() {
         buttonStart?.setOnClickListener {
             buttonStart?.visibility = View.INVISIBLE
             buttonStop?.visibility = View.VISIBLE
+            buttonStop?.isClickable = true
 
-            buttonStop?.text = "WAIT!"
             userTouchStop = false
             toYellow()
 
-            buttonStop?.setOnClickListener {
-                userTouchStop = true
-                if (randomNumber > 0) {
-                    buttonStop?.text = "Wow!"
-                    toRed()
-                } else if (buttonStop?.text != "Wow!") toGreen()
-                else if (buttonStop?.text == "Wow!") toRed()
-                else if (buttonStop?.text.toString().toDouble() == breakTime) reset()
-                buttonReset?.visibility = View.VISIBLE
+            generateAndStart()
+        }
+
+        buttonStop?.setOnClickListener {
+            userTouchStop = true
+
+            if (randomNumber > 0) {
+                toRed()
+                buttonStop?.isClickable = false
+            } else {
+                if (buttonStop?.text != "Hey?") {
+                    toGreen()
+                }
             }
 
-            generateAndStart()
+            buttonReset?.visibility = View.VISIBLE
         }
 
         buttonReset?.setOnClickListener {
