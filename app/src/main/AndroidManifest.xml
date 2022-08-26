@@ -9,7 +9,12 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.Reaction">
-
+        <activity
+            android:name=".OneVsOne"
+            android:exported="false" />
+        <activity
+            android:name=".OnePlayer"
+            android:exported="false" />
         <activity
             android:name=".MainActivity"
             android:exported="true">

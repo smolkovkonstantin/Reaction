@@ -18,65 +18,46 @@
         android:textSize="30sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.498"
+        app:layout_constraintHorizontal_bias="0.495"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.143" />
+        app:layout_constraintVertical_bias="0.24" />
 
     <com.google.android.material.button.MaterialButton
-        android:id="@+id/buttonStart"
-
-        android:layout_width="240dp"
-        android:layout_height="240dp"
-        android:layout_marginTop="96dp"
-        android:stateListAnimator="@null"
-        android:text="@string/button_name_start"
+        android:id="@+id/one_vs_one"
+        android:layout_width="170dp"
+        android:layout_height="70dp"
+        android:layout_marginTop="276dp"
+        android:backgroundTint="@color/dark_purple"
+        android:text="@string/oneVSone"
         android:textColor="@color/white"
-        android:textSize="35sp"
+        android:textSize="20sp"
 
-        app:backgroundTint="@color/dark_purple"
-
-        app:cornerRadius="150dp"
+        app:cornerRadius="10sp"
 
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.497"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView" />
+        app:layout_constraintTop_toTopOf="parent" />
 
     <com.google.android.material.button.MaterialButton
-        android:id="@+id/buttonStop"
-        android:layout_width="240dp"
-        android:layout_height="240dp"
-        android:layout_marginTop="96dp"
-        android:stateListAnimator="@null"
-        android:text="@string/button_name_stop"
-        android:textSize="35sp"
-        android:backgroundTint="@color/black"
+        android:id="@+id/one_player"
+        android:layout_width="170dp"
+        android:layout_height="70dp"
+        android:layout_marginTop="380dp"
+        android:backgroundTint="@color/dark_purple"
+        android:text="@string/onePlayer"
+        android:textColor="@color/white"
+        android:textSize="17sp"
 
-        app:cornerRadius="150dp"
+        app:cornerRadius="10sp"
 
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.497"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView" />
-
-    <com.google.android.material.button.MaterialButton
-        android:id="@+id/buttonReset"
-        style="@style/Widget.MaterialComponents.Button.OutlinedButton"
-        android:layout_width="100dp"
-        android:layout_height="100dp"
-        android:layout_marginTop="52dp"
-        android:text="@string/reset"
-        android:textColor="@color/pink"
-
-        app:cornerRadius="10dp"
-
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.498"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/buttonStart" />
+        app:layout_constraintTop_toTopOf="parent" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>
