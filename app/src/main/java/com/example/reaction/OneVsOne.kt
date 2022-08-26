@@ -81,11 +81,11 @@ class OneVsOne : AppCompatActivity(), View.OnTouchListener {
             while (nowTimeLeft < breakTime) {
                 if (leftUser) break
                 Thread.sleep(1)
-                nowTimeLeft += 2.0
+                nowTimeLeft += 1.9
                 runOnUiThread { update(nowTimeLeft.toInt(), buttonLeftPlayer) }
             }
-            if (nowTimeLeft == breakTime) {
-                buttonLeftPlayer?.text = resources.getString(R.string.hey)
+            if (nowTimeLeft >= breakTime) {
+                runOnUiThread { buttonLeftPlayer?.text = resources.getString(R.string.hey) }
             }
         }.start()
     }
@@ -97,11 +97,11 @@ class OneVsOne : AppCompatActivity(), View.OnTouchListener {
             while (nowTimeRight < breakTime) {
                 if (rightUser) break
                 Thread.sleep(1)
-                nowTimeRight += 2.0
+                nowTimeRight += 1.9
                 runOnUiThread { update(nowTimeRight.toInt(), buttonRightPlayer) }
             }
-            if (nowTimeRight == breakTime) {
-                buttonRightPlayer?.text = resources.getString(R.string.hey)
+            if (nowTimeRight >= breakTime) {
+                runOnUiThread { buttonRightPlayer?.text = resources.getString(R.string.hey) }
             }
         }.start()
     }

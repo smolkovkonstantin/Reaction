@@ -86,11 +86,11 @@ class OnePlayer : AppCompatActivity() {
             while (nowtime < breakTime) {
                 if (userTouchStop) break
                 Thread.sleep(1)
-                nowtime += 2.0
+                nowtime += 1.9
                 runOnUiThread { update(nowtime.toInt()) }
             }
             if (nowtime == breakTime) {
-                buttonStop?.text = "Hey?"
+                runOnUiThread { buttonStop?.text = "Hey?" }
             }
         }.start()
     }
@@ -140,7 +140,7 @@ class OnePlayer : AppCompatActivity() {
             reset()
         }
 
-        backToMainActivity1?.setOnClickListener{
+        backToMainActivity1?.setOnClickListener {
             val intent = Intent(this, MainActivity::class.java)
             startActivity(intent)
             overridePendingTransition(R.anim.right_out, R.anim.left_in)
